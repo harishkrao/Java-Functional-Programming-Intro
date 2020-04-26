@@ -7,12 +7,13 @@ public class monopolyRollTotal {
     public static int rollDice()
     {
         int total = 0;
+        int max_dice_roll = 6;
         int[] rolledval = monopolyroll();
         int doubles_count = 0;
-        // boolean prev_double = false;
+        int max_doubles = 3;
         boolean first_double = false;
         
-        if(rolledval[0] <= 6 && rolledval[1] <= 6)
+        if(rolledval[0] <= max_dice_roll && rolledval[1] <= max_dice_roll)
             while(rolledval[0] == rolledval[1]){
                 total += (rolledval[0] * 2);
                 first_double = true;
@@ -22,14 +23,14 @@ public class monopolyRollTotal {
                 {
                     doubles_count += 1;
                 }
-                if(doubles_count >= 3) {
-                    total = -1;
-                    break;
+                if(doubles_count >= max_doubles) {
+                    return -1;
                 }
             
                 rolledval = monopolyroll();  
             }
             total += rolledval[0] + rolledval[1];
+            first_double = false;
         
             
         return total;
